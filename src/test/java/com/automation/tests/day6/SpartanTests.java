@@ -325,19 +325,21 @@ public class SpartanTests {
     @Test
     @DisplayName("Update only name with PATCH")
     public void test10(){
-        Map<String, Long> update = new HashMap<>();
-        update.put("phone", 10000000000L);
+        /*  We can use Map instead of POJO    */
+        Map<String, String> update = new HashMap<>();
+        update.put("name", "Safa");
 
         Response response = given().
                 accept(ContentType.JSON).
                 contentType(ContentType.JSON).
                 body(update).
-                pathParam("id", 381).
+                pathParam("id", 1).
                 patch("/spartans/{id}");
 
         response.prettyPrint();
+
         //POST - add new spartan
-        //PUT - update existing one, but you have to specify all properties
+        //PUT - update existing one, but you have to specify all properties(fields)
         //PATCH - update existing one, but ypu may specify one or more properties to update
     }
 

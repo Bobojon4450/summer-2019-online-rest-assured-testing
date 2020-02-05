@@ -1,11 +1,15 @@
 package com.automation.utilities;
 
 import com.automation.pojos.Spartan;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -93,6 +97,36 @@ public class APIUtilities {
             //will delete spartan based on id that you specify
             when().delete("/spartans/{id}", userIDs.get(i)).then().assertThat().statusCode(204);
             System.out.println("Deleted spartan with id: "+userIDs.get(i));
+        }
+    }
+
+
+    /**         Java Class Object convert to Physical json file
+     *
+     *      convert JAVA Class Object into JSON format, then creating new
+     *      physical json file at your local desk.
+     *
+     *      The json file is to be displayed left side of your IDE.
+     *
+     *      for example;
+     *       Student student= new Student();
+     *       the student must contains JSON object in first
+     *
+     * @param object  : Class object , such as Student student==> object is student
+     * @param givenNewFileName  : new file name which you will create. such as "student123.json"
+     * @throws java.io.IOException
+     */
+    public static void createJsonFileByJavaObject(Object object, String givenNewFileName) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<String> list = List.of(gson.toJson(object).split(""));
+        FileWriter bw = null;
+        try{
+            bw = new FileWriter(givenNewFileName);
+            for (String each : list) {
+                bw.write(each);
+            }
+            bw.flush();
+        }catch (IOException E){
         }
     }
 }
