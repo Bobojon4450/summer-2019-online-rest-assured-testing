@@ -20,6 +20,7 @@
         </plugins>
     </build>
     <dependencies>
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -42,7 +43,10 @@
             <artifactId>javafaker</artifactId>
             <version>1.0.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.0</version>
+        </dependency>
     </dependencies>
-
 </project>

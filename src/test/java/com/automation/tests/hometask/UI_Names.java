@@ -41,6 +41,14 @@ public class UI_Names {
                    .body("region", is(notNullValue()));
     }
 
+    @Test
+    @DisplayName("Verify status code 200, content type application/json; charset=utf-8\n" +
+            "Verify that name, surname, gender, region fields have value")
+    public void NoParamsTest2(){
+        Response response = given().get();
+        String responseStr = response.headers().toString()+"\n\n"+response.body().prettyPrint();
+        System.out.println(responseStr);
+    }
 
     @Test
     @DisplayName("Verify that value of gender field is same from step 1")
